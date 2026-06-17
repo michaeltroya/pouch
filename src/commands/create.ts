@@ -18,7 +18,6 @@ function requireNonEmpty(message: string) {
     if (!(value ?? '').trim()) {
       return message
     }
-
     return undefined
   }
 }
@@ -54,12 +53,12 @@ export function createCommand(): Command {
           {
             value: 'project',
             label: 'Current project',
-            hint: './.agent-skills/<skill-name>',
+            hint: './.agents/skills/<skill-name>',
           },
           {
             value: 'home',
             label: 'Home directory',
-            hint: '~/.agent-skills/<skill-name>',
+            hint: '~/.agents/skills/<skill-name>',
           },
         ],
       }),
