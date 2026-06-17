@@ -39,7 +39,7 @@ describe('createSkill', () => {
       agents,
     })
 
-    expect(result.canonicalPath).toBe(path.join(projectRoot, '.agent-skills', 'testing-skill'))
+    expect(result.canonicalPath).toBe(path.join(projectRoot, '.agents', 'skills', 'testing-skill'))
     await expect(fs.readFile(result.skillFilePath, 'utf8')).resolves.toContain(
       'description: "Checks local skill behavior."',
     )
@@ -49,7 +49,7 @@ describe('createSkill', () => {
     ).resolves.toBe(result.canonicalPath)
     await expect(
       fs.readlink(path.join(projectRoot, '.codex', 'skills', 'testing-skill')),
-    ).resolves.toBe(path.join('..', '..', '.agent-skills', 'testing-skill'))
+    ).resolves.toBe(path.join('..', '..', '.agents', 'skills', 'testing-skill'))
     await expect(
       fs.realpath(path.join(projectRoot, '.cursor', 'skills', 'testing-skill')),
     ).resolves.toBe(result.canonicalPath)
@@ -71,7 +71,7 @@ describe('createSkill', () => {
       agents,
     })
 
-    expect(result.canonicalPath).toBe(path.join(fakeHome, '.agent-skills', 'home-skill'))
+    expect(result.canonicalPath).toBe(path.join(fakeHome, '.agents', 'skills', 'home-skill'))
     await expect(fs.realpath(path.join(fakeHome, '.claude', 'skills', 'home-skill'))).resolves.toBe(
       result.canonicalPath,
     )
@@ -89,7 +89,7 @@ describe('createSkill', () => {
   })
 
   it('refuses to overwrite an existing canonical SKILL.md', async () => {
-    const skillFile = path.join(projectRoot, '.agent-skills', 'testing', 'SKILL.md')
+    const skillFile = path.join(projectRoot, '.agents', 'skills', 'testing', 'SKILL.md')
     await fs.outputFile(skillFile, 'existing')
 
     await expect(
@@ -107,7 +107,10 @@ describe('createSkill', () => {
   })
 
   it('refuses to write into a non-empty canonical folder without SKILL.md', async () => {
-    await fs.outputFile(path.join(projectRoot, '.agent-skills', 'testing', 'notes.txt'), 'keep me')
+    await fs.outputFile(
+      path.join(projectRoot, '.agents', 'skills', 'testing', 'notes.txt'),
+      'keep me',
+    )
 
     await expect(
       createSkill({
@@ -120,7 +123,7 @@ describe('createSkill', () => {
   })
 
   it('writes SKILL.md into an existing empty canonical folder', async () => {
-    const canonicalPath = path.join(projectRoot, '.agent-skills', 'testing')
+    const canonicalPath = path.join(projectRoot, '.agents', 'skills', 'testing')
     await fs.ensureDir(canonicalPath)
 
     const result = await createSkill({
@@ -135,7 +138,7 @@ describe('createSkill', () => {
   })
 
   it('refuses when the canonical parent path is a file', async () => {
-    await fs.outputFile(path.join(projectRoot, '.agent-skills'), 'not a directory')
+    await fs.outputFile(path.join(projectRoot, '.agents'), 'not a directory')
 
     await expect(
       createSkill({
@@ -160,7 +163,7 @@ describe('createSkill', () => {
     ).rejects.toThrow('is not a symlink')
 
     await expect(
-      fs.pathExists(path.join(projectRoot, '.agent-skills', 'testing', 'SKILL.md')),
+      fs.pathExists(path.join(projectRoot, '.agents', 'skills', 'testing', 'SKILL.md')),
     ).resolves.toBe(false)
   })
 
@@ -177,12 +180,12 @@ describe('createSkill', () => {
     ).rejects.toThrow('not a directory')
 
     await expect(
-      fs.pathExists(path.join(projectRoot, '.agent-skills', 'testing', 'SKILL.md')),
+      fs.pathExists(path.join(projectRoot, '.agents', 'skills', 'testing', 'SKILL.md')),
     ).resolves.toBe(false)
   })
 
   it('reuses an existing symlink when it already points at the canonical skill', async () => {
-    const canonicalPath = path.join(projectRoot, '.agent-skills', 'testing')
+    const canonicalPath = path.join(projectRoot, '.agents', 'skills', 'testing')
     const linkPath = path.join(projectRoot, '.codex', 'skills', 'testing')
     await fs.ensureDir(path.dirname(linkPath))
     await fs.symlink(canonicalPath, linkPath, 'dir')
@@ -269,9 +272,9 @@ describe('createSkill', () => {
       }),
     ).rejects.toThrow()
 
-    await expect(fs.pathExists(path.join(projectRoot, '.agent-skills', 'testing'))).resolves.toBe(
-      false,
-    )
+    await expect(
+      fs.pathExists(path.join(projectRoot, '.agents', 'skills', 'testing')),
+    ).resolves.toBe(false)
     await expect(fs.pathExists(path.join(sharedSkillDirectory, 'testing'))).resolves.toBe(false)
   })
 

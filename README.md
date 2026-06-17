@@ -5,10 +5,10 @@ Create one agent skill and share it across Codex, Cursor, and Claude.
 Pouch is a small CLI for keeping agent skills in one canonical place. Instead of copying the same `SKILL.md` into every agent's folder, Pouch creates the real skill once and links each agent to it.
 
 ```txt
-.agent-skills/review-helper/SKILL.md
-.codex/skills/review-helper  -> ../../.agent-skills/review-helper
-.cursor/skills/review-helper -> ../../.agent-skills/review-helper
-.claude/skills/review-helper -> ../../.agent-skills/review-helper
+.agents/skills/review-helper/SKILL.md
+.codex/skills/review-helper  -> ../../.agents/skills/review-helper
+.cursor/skills/review-helper -> ../../.agents/skills/review-helper
+.claude/skills/review-helper -> ../../.agents/skills/review-helper
 ```
 
 ## Why Pouch?
@@ -91,20 +91,20 @@ Pouch will ask:
 You can choose a project-local skill:
 
 ```txt
-./.agent-skills/<skill-name>
+./.agents/skills/<skill-name>
 ```
 
 Or a global skill:
 
 ```txt
-~/.agent-skills/<skill-name>
+~/.agents/skills/<skill-name>
 ```
 
 Example output:
 
 ```txt
 review-helper
-Canonical: /path/to/project/.agent-skills/review-helper
+Canonical: /path/to/project/.agents/skills/review-helper
 Codex: /path/to/project/.codex/skills/review-helper (created)
 Cursor: /path/to/project/.cursor/skills/review-helper (created)
 Claude: /path/to/project/.claude/skills/review-helper (created)
@@ -115,18 +115,19 @@ Claude: /path/to/project/.claude/skills/review-helper (created)
 Creating a project-local skill named `Review Helper` produces:
 
 ```txt
-.agent-skills/
-  review-helper/
-    SKILL.md
+.agents/
+  skills/
+    review-helper/
+      SKILL.md
 .codex/
   skills/
-    review-helper -> ../../.agent-skills/review-helper
+    review-helper -> ../../.agents/skills/review-helper
 .cursor/
   skills/
-    review-helper -> ../../.agent-skills/review-helper
+    review-helper -> ../../.agents/skills/review-helper
 .claude/
   skills/
-    review-helper -> ../../.agent-skills/review-helper
+    review-helper -> ../../.agents/skills/review-helper
 ```
 
 The generated `SKILL.md` starts like this:

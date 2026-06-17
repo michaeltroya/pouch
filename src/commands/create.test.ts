@@ -69,8 +69,8 @@ describe('createCommand', () => {
     clackMocks.multiselect.mockResolvedValueOnce(['codex', 'cursor'])
     skillMocks.createSkill.mockResolvedValueOnce({
       skillName: 'testing-skill',
-      canonicalPath: path.join(projectRoot, '.agent-skills', 'testing-skill'),
-      skillFilePath: path.join(projectRoot, '.agent-skills', 'testing-skill', 'SKILL.md'),
+      canonicalPath: path.join(projectRoot, '.agents', 'skills', 'testing-skill'),
+      skillFilePath: path.join(projectRoot, '.agents', 'skills', 'testing-skill', 'SKILL.md'),
       links: [],
     })
 
@@ -104,8 +104,8 @@ describe('createCommand', () => {
     clackMocks.multiselect.mockResolvedValueOnce(['claude'])
     skillMocks.createSkill.mockResolvedValueOnce({
       skillName: 'home-skill',
-      canonicalPath: path.join(fakeHome, '.agent-skills', 'home-skill'),
-      skillFilePath: path.join(fakeHome, '.agent-skills', 'home-skill', 'SKILL.md'),
+      canonicalPath: path.join(fakeHome, '.agents', 'skills', 'home-skill'),
+      skillFilePath: path.join(fakeHome, '.agents', 'skills', 'home-skill', 'SKILL.md'),
       links: [],
     })
 

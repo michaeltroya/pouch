@@ -27,7 +27,7 @@ export function getLocationRoot(location: CanonicalSkillLocation): string {
 }
 
 export function getCanonicalSkillsDirectory(location: CanonicalSkillLocation): string {
-  return path.join(getLocationRoot(location), '.agent-skills')
+  return path.join(getLocationRoot(location), '.agents', 'skills')
 }
 
 export function getCanonicalSkillPath(location: CanonicalSkillLocation, skillName: string): string {
