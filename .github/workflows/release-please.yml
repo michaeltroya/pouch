@@ -1,0 +1,44 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: node
+
+      - uses: actions/checkout@v6
+        if: ${{ steps.release.outputs.release_created }}
+
+      - uses: actions/setup-node@v6
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - uses: pnpm/action-setup@v6
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: pnpm install --frozen-lockfile
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: pnpm build
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: npm publish
+        if: ${{ steps.release.outputs.release_created }}
