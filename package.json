@@ -2,9 +2,25 @@
   "name": "pouch",
   "version": "0.1.0",
   "description": "Create and link shared agent skills",
-  "keywords": [],
-  "license": "ISC",
-  "author": "",
+  "keywords": [
+    "agents",
+    "ai",
+    "claude",
+    "cli",
+    "codex",
+    "cursor",
+    "skills"
+  ],
+  "homepage": "https://github.com/michaeltroya/pouch#readme",
+  "bugs": {
+    "url": "https://github.com/michaeltroya/pouch/issues"
+  },
+  "license": "MIT",
+  "author": "Michael Troya",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaeltroya/pouch.git"
+  },
   "bin": {
     "pouch": "./dist/index.mjs"
   },
