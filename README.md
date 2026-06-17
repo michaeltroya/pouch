@@ -29,23 +29,48 @@ Pouch is CLI-only. It does not expose a JavaScript API.
 
 Requires Node.js 22.13 or newer.
 
-Run Pouch without installing it:
+Run without installing:
 
 ```sh
-pnpm dlx pouch create
+pnpm dlx @michaeltroya/pouch create
 ```
 
-Or install it globally:
+With npm:
 
 ```sh
-pnpm add --global pouch
+npx @michaeltroya/pouch create
+```
+
+With Yarn:
+
+```sh
+yarn dlx @michaeltroya/pouch create
+```
+
+Or install globally:
+
+```sh
+npm install --global @michaeltroya/pouch
 pouch create
 ```
 
-Using npm instead of pnpm:
+For local development in this repo:
 
 ```sh
-npx pouch create
+pnpm install
+pnpm build
+```
+
+During local development, run the CLI directly from TypeScript:
+
+```sh
+pnpm dev -- create
+```
+
+After building, the package exposes a `pouch` binary:
+
+```sh
+pouch create
 ```
 
 ## Usage
