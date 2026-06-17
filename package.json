@@ -1,0 +1,46 @@
+{
+  "name": "pouch",
+  "version": "0.1.0",
+  "description": "Create and link shared agent skills",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "bin": {
+    "pouch": "./dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "vp pack",
+    "check": "vp check",
+    "check:fix": "vp check --fix",
+    "format": "vp fmt",
+    "lint": "vp lint",
+    "prepack": "vp pack",
+    "test": "vp test",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.5.1",
+    "commander": "^15.0.0",
+    "fs-extra": "^11.3.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^25.9.3",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "packageManager": "pnpm@11.7.0+sha512.19cc852c120c7125760f2443ee6be0ca5b40f9f50598de1a09a1f177503e010e57c23c77646e01e761de59bf874fb22a3398c33ab9691fc13eb946b6f0f4d620"
+}
